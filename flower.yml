@@ -45,6 +45,6 @@ spec:
     app: flower
   ports:
   - protocol: TCP
-    port: 80
+    port: 3015
     targetPort: 3015
   type: ClusterIP
