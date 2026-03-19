@@ -4,13 +4,13 @@ metadata:
   name: flipkart-deployment
   namespace: project-ns
 spec:
-  replicas: 3
+  replicas: 2
 
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 25%
-      maxSurge: 25%
+      maxUnavailable: 25
+      maxSurge: 25
 
   selector:
     matchLabels:
@@ -29,11 +29,11 @@ spec:
 
         resources:
           requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
             cpu: "250m"
             memory: "256Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
 
 ---
 apiVersion: v1
