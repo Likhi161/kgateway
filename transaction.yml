@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transaction-deployment
+  namespace: project-ns
+spec:
+  replicas: 3
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+
+  selector:
+    matchLabels:
+      app: transaction
+
+  template:
+    metadata:
+      labels:
+        app: transaction
+    spec:
+      containers:
+      - name: transaction
+        image: muralisocial123/transaction-app:v1.0.0
+        ports:
+        - containerPort: 3000
+
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: transaction-service
+  namespace: project-ns
+spec:
+  selector:
+    app: transaction
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: ClusterIP
