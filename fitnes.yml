@@ -5,9 +5,17 @@ metadata:
   namespace: project-ns
 spec:
   replicas: 3
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
   selector:
     matchLabels:
       app: fitness
+
   template:
     metadata:
       labels:
@@ -18,6 +26,15 @@ spec:
         image: muralisocial123/fitness-app:v1.0.1
         ports:
         - containerPort: 5000
+
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
 ---
 apiVersion: v1
 kind: Service
