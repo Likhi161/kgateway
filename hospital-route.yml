@@ -10,14 +10,14 @@ spec:
   - matches:
     - path:
         type: PathPrefix
-        value: /
+        value: /hospital
 
     filters:
     - type: URLRewrite
       urlRewrite:
         path:
           type: ReplacePrefixMatch
-          replacePrefixMatch: /
+          replacePrefixMatch: /hospital
 
     backendRefs:
     - name: hospital-service
