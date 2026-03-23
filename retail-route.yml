@@ -11,15 +11,13 @@ spec:
     - path:
         type: PathPrefix
         value: /retail
-    - path:
-        type: PathPrefix
-        value: /login
-    - path:
-        type: PathPrefix
-        value: /register
-    - path:
-        type: PathPrefix
-        value: /contact
+
+    filters:
+    - type: URLRewrite
+      urlRewrite:
+        path:
+          type: ReplacePrefixMatch
+          replacePrefixMatch: /
 
     backendRefs:
     - name: capsule-service
