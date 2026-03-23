@@ -21,13 +21,6 @@ spec:
         type: PathPrefix
         value: /contact
 
-    filters:
-    - type: URLRewrite
-      urlRewrite:
-        path:
-          type: ReplacePrefixMatch
-          replacePrefixMatch: /
-
     backendRefs:
     - name: capsule-service
       port: 82
