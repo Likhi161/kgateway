@@ -12,13 +12,6 @@ spec:
         type: PathPrefix
         value: /hospital
 
-    filters:
-    - type: URLRewrite
-      urlRewrite:
-        path:
-          type: ReplacePrefixMatch
-          replacePrefixMatch: /
-
     backendRefs:
     - name: hospital-service
       port: 81
